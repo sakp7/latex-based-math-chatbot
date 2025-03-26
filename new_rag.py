@@ -187,7 +187,7 @@ def latex_query_enhancement(llm, query):
     return latex_chain.invoke({"query": query})
 
 def main():
-     st.set_page_config(
+    st.set_page_config(
     page_title="Latex Based RAG",
    
     layout="wide",
