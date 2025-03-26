@@ -207,87 +207,87 @@ def main():
     llm = setup_rag_pipeline()
     
     # Main content area
-    col1, col2 = st.columns([1, 2])
+    # col1, col2 = st.columns([1, 2])
     
-    with col2:
-        if query_mode == "Text Query":
+    # with col2:
+    if query_mode == "Text Query":
             # Text Input
-            query = st.text_input("Enter your mathematical query:")
-            submit_button = st.button("Submit Query")
+        query = st.text_input("Enter your mathematical query:")
+        submit_button = st.button("Submit Query")
             
-            if submit_button and query:
-                with st.spinner("Processing your query..."):
+        if submit_button and query:
+            with st.spinner("Processing your query..."):
                     # Convert query to LaTeX
-                    latex_query = latex_query_enhancement(llm, query)
+                latex_query = latex_query_enhancement(llm, query)
                     
                     # Display query analysis
-                    st.subheader("🔍 Query Analysis")
-                    st.markdown("**Original Query:**")
-                    st.code(query)
-                    st.markdown("**LaTeX Enhanced Query:**")
-                    st.code(latex_query)
+                st.subheader("🔍 Query Analysis")
+                st.markdown("**Original Query:**")
+                st.code(query)
+                st.markdown("**LaTeX Enhanced Query:**")
+                st.code(latex_query)
                     
                     # Generate response and get context chunks
-                    response, context_chunks = rag_pipeline(llm, query, latex_query)
+                response, context_chunks = rag_pipeline(llm, query, latex_query)
                     
                     # Display Retrieved Chunks in an Expander
-                    with st.expander("🔬 Retrieved Context Chunks"):
-                        for i, chunk in enumerate(context_chunks, 1):
-                            st.markdown(f"### Chunk {i}")
-                            st.markdown(f"**Source:** {chunk['source']}")
-                            st.markdown(f"**Relevance Score:** {chunk['score']:.4f}")
-                            st.code(chunk['text'])
+                with st.expander("🔬 Retrieved Context Chunks"):
+                    for i, chunk in enumerate(context_chunks, 1):
+                        st.markdown(f"### Chunk {i}")
+                        st.markdown(f"**Source:** {chunk['source']}")
+                        st.markdown(f"**Relevance Score:** {chunk['score']:.4f}")
+                        st.code(chunk['text'])
                     
                     # Display Final Response
-                    st.subheader("🧮 Step-by-Step Solution")
-                    st.markdown(response)
+                st.subheader("🧮 Step-by-Step Solution")
+                st.markdown(response)
         
-        else:  # Image Query
+    else:  # Image Query
             # Image upload
-            uploaded_image = st.file_uploader(
+        uploaded_image = st.file_uploader(
                 "Upload Mathematical Query Image", 
                 type=['png', 'jpg', 'jpeg']
             )
             
-            if uploaded_image:
+        if uploaded_image:
                 # Open the image
-                image = Image.open(uploaded_image)
+            image = Image.open(uploaded_image)
                 
                 # Display uploaded image
-                st.image(image, caption="Uploaded Mathematical Query")
+            st.image(image, caption="Uploaded Mathematical Query")
                 
                 # Submit button
-                if st.button("Process Image Query"):
-                    with st.spinner("Processing image query..."):
-                        try:
+            if st.button("Process Image Query"):
+                with st.spinner("Processing image query..."):
+                    try:
                             # Convert image to text query with LaTeX
-                            latex_query = vision_query_enhancement(image)
+                        latex_query = vision_query_enhancement(image)
                             
                             # Display query information
-                            st.subheader("🔍 Query Analysis")
+                        st.subheader("🔍 Query Analysis")
                             
                             # LaTeX Query
-                            st.markdown("**Extracted LaTeX Query:**")
-                            st.code(latex_query)
+                        st.markdown("**Extracted LaTeX Query:**")
+                        st.code(latex_query)
                             
                             # Generate response and get context chunks
-                            response, context_chunks = rag_pipeline(llm, latex_query, latex_query)
+                        response, context_chunks = rag_pipeline(llm, latex_query, latex_query)
                             
                             # Display Retrieved Chunks in an Expander
-                            with st.expander("🔬 Retrieved Context Chunks"):
-                                for i, chunk in enumerate(context_chunks, 1):
-                                    st.markdown(f"### Chunk {i}")
-                                    st.markdown(f"**Source:** {chunk['source']}")
-                                    st.markdown(f"**Relevance Score:** {chunk['score']:.4f}")
-                                    st.code(chunk['text'])
+                        with st.expander("🔬 Retrieved Context Chunks"):
+                            for i, chunk in enumerate(context_chunks, 1):
+                                st.markdown(f"### Chunk {i}")
+                                st.markdown(f"**Source:** {chunk['source']}")
+                                st.markdown(f"**Relevance Score:** {chunk['score']:.4f}")
+                                st.code(chunk['text'])
                             
                             # Display Final Response
-                            st.subheader("🧮 Step-by-Step Solution")
-                            st.markdown(response)
+                        st.subheader("🧮 Step-by-Step Solution")
+                        st.markdown(response)
                         
-                        except Exception as e:
-                            st.error(f"Error processing image: {e}")
-                            st.error(traceback.format_exc())
+                    except Exception as e:
+                        st.error(f"Error processing image: {e}")
+                        st.error(traceback.format_exc())
 
 if __name__ == "__main__":
    
