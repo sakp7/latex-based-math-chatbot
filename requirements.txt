@@ -6,6 +6,6 @@ langchain_google_genai==2.1.1
 langchain_groq==0.3.1
 langchain_text_splitters==0.3.7
 matplotlib==3.7.0
-Pillow==11.1.0
+Pillow==7.1.0
 PyPDF2==3.0.1
 streamlit==1.25.0
