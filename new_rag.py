@@ -18,12 +18,7 @@ from dotenv import load_dotenv
 
 # Load environment variables
 load_dotenv()
-st.set_page_config(
-    page_title="Latext Based RAG",
-   
-    layout="wide",
-    initial_sidebar_state="expanded"
-)
+
 def image_to_base64(image):
     """
     Convert PIL Image to base64 encoded string
@@ -290,4 +285,10 @@ def main():
                             st.error(traceback.format_exc())
 
 if __name__ == "__main__":
+    st.set_page_config(
+    page_title="Latext Based RAG",
+   
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
     main()
