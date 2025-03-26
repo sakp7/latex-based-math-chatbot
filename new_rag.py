@@ -188,7 +188,7 @@ def latex_query_enhancement(llm, query):
 
 def main():
      st.set_page_config(
-    page_title="Latext Based RAG",
+    page_title="Latex Based RAG",
    
     layout="wide",
     initial_sidebar_state="expanded"
