@@ -187,7 +187,12 @@ def latex_query_enhancement(llm, query):
     return latex_chain.invoke({"query": query})
 
 def main():
-    st.set_page_config(layout="wide")
+     st.set_page_config(
+    page_title="Latext Based RAG",
+   
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
     st.title("📘 Mathematical Query RAG Assistant")
     
     # Sidebar with mode selection
@@ -285,10 +290,5 @@ def main():
                             st.error(traceback.format_exc())
 
 if __name__ == "__main__":
-    st.set_page_config(
-    page_title="Latext Based RAG",
    
-    layout="wide",
-    initial_sidebar_state="expanded"
-)
     main()
