@@ -11,3 +11,5 @@ streamlit==1.28.1
 chromadb==0.4.24
 pymupdf
 unstructured
+langchain-pinecone
+pinecone
