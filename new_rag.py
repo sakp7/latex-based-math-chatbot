@@ -138,6 +138,7 @@ def rag_pipeline(llm, query, latex_query):
     3. Utilize LaTeX notation for mathematical expressions
     4. Explain reasoning thoroughly
     5. If no relevant context exists, clearly state limitations
+    6.If you are using variables for some thing finally dont forget to replace it with original value
     
     Provide a comprehensive, step-by-step solution.
     """)
