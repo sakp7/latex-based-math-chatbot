@@ -12,7 +12,7 @@ from langchain_core.messages import HumanMessage
 from langchain_core.runnables import RunnablePassthrough
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
-from langchain_groq import ChatGroq
+# from langchain_groq import ChatGroq
 from pinecone import Pinecone
 from dotenv import load_dotenv
 
@@ -74,7 +74,7 @@ def setup_rag_pipeline():
     Setup RAG pipeline with Groq LLM
     """
     # Initialize LLM
-    llm = ChatGroq(model="llama3-70b-8192",api_key=st.secrets['GROQ_API_KEY'])
+    llm = ChatGoogleGenerativeAI(model="gemini-2.5-pro-exp-03-25",api_key=st.secrets['GOOGLE_API_KEY'])
     return llm
 
 def retrieve_from_pinecone(query, top_k=3):
